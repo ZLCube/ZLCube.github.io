@@ -39,12 +39,19 @@ body::before {
 .avatar {
     width: 250px;
     border-radius: 50%;
-    border: 2px solid #7D27F5
+    border: 2px solid hsl(256, 85%, 63%);
+
+    box-shadow:
+        0 0 12px rgba(150, 112, 255, 0.712),
+        0 0 35px rgba(150, 112, 255, 0.568);
 }
 
 .hero h1 {
-    font-size: 5rem;
-    color: #f2e9ff
+
+    text-shadow:
+        0 0 10px rgba(125,39,245,.18),
+        0 0 30px rgba(125,39,245,.08);
+
 }
 
 .posts {
@@ -59,14 +66,38 @@ body::before {
 }
 
 .card {
-    background: rgba(20, 10, 35, .84);
-    border: 1px solid rgba(125, 39, 245, .14);
+    background: rgba(0, 0, 0, 0.267);
+
+    border:
+        1px solid rgba(75, 50, 165, 0.616);
+
     border-radius: 24px;
-    padding: 2rem
+
+    padding: 2rem;
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    box-shadow:
+        0 0 10px rgba(84, 39, 245, 0.247),
+        0 0 30px rgba(84, 39, 245, 0.247);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.card:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 0 16px rgba(150, 112, 255, 0.712),
+        0 0 45px rgba(150, 112, 255, 0.712);
 }
 
 a {
-    color: #7D27F5;
+    color: hsl(256, 85%, 63%);
     text-decoration: none
 }
 
@@ -76,8 +107,34 @@ a {
     padding: 6rem 0
 }
 
+.buttons {
+
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+
+}
+
 .btn {
     padding: .8rem 1.3rem;
-    border: 1px solid #7D27F5;
-    border-radius: 12px
+
+    border:
+        1px solid hsl(256, 85%, 63%);
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 0 8px rgba(150, 112, 255, 0.911);
+
+    transition:
+        .25s ease;
+}
+
+.btn:hover {
+
+    transform:
+        translateY(-3px)
+        scale(1.03);
+
 }
