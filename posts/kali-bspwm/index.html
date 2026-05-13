@@ -1,18 +1,385 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset='UTF-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1.0'>
-<title>Kali BSPWM Setup</title>
-<link rel='stylesheet' href='../../style.css'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kali BSPWM Installation Guide | ZLCube</title>
+
+    <link rel="stylesheet" href="../../style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+
+        .post-container {
+            width: min(1000px, 90%);
+            margin: auto;
+            padding: 6rem 0;
+        }
+
+        .post-container h1 {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+
+            text-align: center;
+
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .post-container h2 {
+            margin-top: 4rem;
+            margin-bottom: 1rem;
+
+            color: #ead9ff;
+        }
+
+        .post-container p,
+        .post-container li {
+            color: #cfc3dd;
+            line-height: 1.9;
+        }
+
+        .post-container img {
+            width: 100%;
+            border-radius: 20px;
+            margin: 2rem 0;
+
+            border:
+                1px solid rgba(125,39,245,.15);
+        }
+
+        .code {
+            background:
+                rgba(20,10,35,.84);
+
+            border:
+                1px solid rgba(125,39,245,.15);
+
+            padding: 1rem;
+
+            border-radius: 14px;
+
+            overflow-x: auto;
+
+            margin: 1rem 0;
+
+            font-family: monospace;
+        }
+
+        details {
+            background:
+                rgba(20,10,35,.82);
+
+            border:
+                1px solid rgba(125,39,245,.12);
+
+            border-radius: 18px;
+
+            padding: 1.5rem;
+
+            margin: 2rem 0;
+        }
+
+        summary {
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #f2e9ff;
+        }
+
+        .language-switch {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .language-switch a {
+            color: #7D27F5;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+
+            margin-top: 2rem;
+        }
+
+        th,
+        td {
+            border:
+                1px solid rgba(125,39,245,.15);
+
+            padding: 1rem;
+            text-align: left;
+        }
+
+        th {
+            background:
+                rgba(125,39,245,.12);
+
+            color: #f2e9ff;
+        }
+
+        td {
+            background:
+                rgba(20,10,35,.65);
+
+            color: #cfc3dd;
+        }
+
+        td a {
+            color: #7D27F5;
+            text-decoration: none;
+        }
+
+        .showcase-title {
+            margin-top: 5rem;
+            text-align: center;
+        }
+
+        .back-btn {
+            margin-bottom: 4rem;
+            display: inline-block;
+        }
+
+    </style>
 </head>
 <body>
-<div class='matrix'></div>
-<div class='post-container'>
-<a href='../../index.html' class='btn'>← Back</a>
-<h1>Kali BSPWM Setup</h1>
-<p>Cyberpunk themed post page for Kali BSPWM Setup.</p>
+
+<div class="matrix"></div>
+
+<div class="post-container">
+
+    <a href="../../index.html" class="btn back-btn">
+        ← Back
+    </a>
+
+    <h1> <b>🐉 Kali BSPWM Installation Guide 🐉</b></h1>
+
+    <div class="language-switch">
+        <a href="#english">🇺🇸 English</a>
+        |
+        <a href="#espanol">🇲🇽 Español</a>
+    </div>
+
+    <!-- ENGLISH -->
+
+    <details id="english">
+
+        <summary>
+            🇺🇸 English Installation
+        </summary>
+
+        <h2>Welcome</h2>
+
+        <p>
+            Welcome to my Kali Linux customization auto-install repository.
+            This project installs and configures my custom BSPWM environment automatically.
+        </p>
+
+        <h2>1. Update your system</h2>
+
+        <div class="code">
+sudo apt update -y
+        </div>
+
+        <div class="code">
+sudo apt upgrade -y
+        </div>
+
+        <h2>2. Clone the repository</h2>
+
+        <div class="code">
+git clone https://github.com/ZLCube/KaliAutobspwm.git && cd KaliAutobspwm
+        </div>
+
+        <h2>3. Give execution permissions</h2>
+
+        <div class="code">
+chmod +x Autoinstall.sh
+        </div>
+
+        <h2>4. Run the installer</h2>
+
+        <div class="code">
+./Autoinstall.sh
+        </div>
+
+        <h2>5. Restart your session</h2>
+
+        <div class="code">
+kill -9 -1
+        </div>
+
+    </details>
+
+    <!-- ESPAÑOL -->
+
+    <details id="espanol">
+
+        <summary>
+            🇲🇽 Instalación en Español
+        </summary>
+
+        <h2>Bienvenido</h2>
+
+        <p>
+            Bienvenido a mi repositorio de auto instalación para personalización de Kali Linux.
+            Este proyecto instala y configura automáticamente mi entorno personalizado de BSPWM.
+        </p>
+
+        <h2>1. Actualiza tu sistema</h2>
+
+        <div class="code">
+sudo apt update -y
+        </div>
+
+        <div class="code">
+sudo apt upgrade -y
+        </div>
+
+        <h2>2. Clona el repositorio</h2>
+
+        <div class="code">
+git clone https://github.com/ZLCube/KaliAutobspwm.git && cd KaliAutobspwm
+        </div>
+
+        <h2>3. Asigna permisos de ejecución</h2>
+
+        <div class="code">
+chmod +x Autoinstall.sh
+        </div>
+
+        <h2>4. Ejecuta el instalador</h2>
+
+        <div class="code">
+./Autoinstall.sh
+        </div>
+
+        <h2>5. Reinicia tu sesión</h2>
+
+        <div class="code">
+kill -9 -1
+        </div>
+
+    </details>
+
+    <!-- SHOWCASE -->
+
+    <h2 style="font-size: 40px;"><b>🖼️ Showcase </b></h2>
+
+    <p style="font-size: 25px;"><b>Environment demo </b></p>
+    <img src="https://github.com/ZLCube/KaliAutobspwm/blob/main/Showcase/base.png?raw=true">
+
+    <p style="font-size: 25px;"><b>Polybar & EWW bars</b></p>
+    <img src="https://github.com/ZLCube/KaliAutobspwm/blob/main/Showcase/bars.png?raw=true">
+
+    <p style="font-size: 25px;"><b>EWW widgets</b></p>
+    <img src="https://github.com/ZLCube/KaliAutobspwm/blob/main/Showcase/eww.png?raw=true"style="width: 150px;">
+
+    <p style="font-size: 25px;"><b>User and Root shells</b></p>
+    <img src="https://github.com/ZLCube/KaliAutobspwm/blob/main/Showcase/shells.png?raw=true">
+
+    <p style="font-size: 25px;"><b>Rofi app search bar theme</b></p>
+    <img src="https://github.com/ZLCube/KaliAutobspwm/blob/main/Showcase/rofi.png?raw=true">
+
+    <p style="font-size: 25px;"><b>Shell image preview plugin</b></p>
+    <img src="https://github.com/ZLCube/KaliAutobspwm/blob/main/Showcase/plugins.png?raw=true">
+
+    <p style="font-size: 25px;"><b>Starship folder git status</b></p>
+    <img src="https://github.com/ZLCube/KaliAutobspwm/blob/main/Showcase/repostat.png?raw=true">
+
+    <p style="font-size: 25px;"><b>Funny audio plugin</b></p>
+    <img src="https://github.com/ZLCube/KaliAutobspwm/blob/main/Showcase/cava_audio_waves.png?raw=true">
+
+    <!-- FEATURES -->
+
+    <h2>⚡ Features & Dependencies</h2>
+
+    <table>
+
+        <tr>
+            <th>Dependency</th>
+            <th>Description</th>
+            <th>Repository</th>
+        </tr>
+
+        <tr>
+            <td>BSPWM</td>
+            <td>Binary space partitioning window manager</td>
+            <td>
+                <a href="https://github.com/baskerville/bspwm">
+                    bspwm
+                </a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>SXHKD</td>
+            <td>Simple X hotkey daemon</td>
+            <td>
+                <a href="https://github.com/baskerville/sxhkd">
+                    sxhkd
+                </a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Picom</td>
+            <td>Compositor for blur and transparency</td>
+            <td>
+                <a href="https://github.com/yshui/picom">
+                    picom
+                </a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>EWW</td>
+            <td>ElKowars Wacky Widgets</td>
+            <td>
+                <a href="https://github.com/elkowar/eww">
+                    eww
+                </a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Rofi Network Manager</td>
+            <td>NetworkManager integration</td>
+            <td>
+                <a href="https://github.com/firecat53/networkmanager-dmenu">
+                    networkmanager-dmenu
+                </a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Starship</td>
+            <td>Cross-shell customizable prompt</td>
+            <td>
+                <a href="https://github.com/starship/starship">
+                    starship
+                </a>
+            </td>
+        </tr>
+
+    </table>
+
+    <!-- CREDITS -->
+
+    <h2>💜 Credits</h2>
+
+    <p>
+        Huge thanks to all the developers and projects
+        that made this customization possible.
+    </p>
+
 </div>
+
 </body>
 </html>
