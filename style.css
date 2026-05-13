@@ -29,8 +29,8 @@ body::before {
     position: fixed;
     inset: 0;
     background-image:
-        linear-gradient(rgba(0,255,120,.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,255,120,.08) 1px, transparent 1px);
+        linear-gradient(rgba(129,71,255,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(129,71,255,.08) 1px, transparent 1px);
 
     background-size: 40px 40px;
     z-index: -2;
@@ -58,18 +58,18 @@ body::before {
     inset: 0;
     background:
         radial-gradient(circle at top,
-        rgba(0,255,120,.12),
+        rgba(129,71,255,.12),
         transparent 60%);
 }
 
 .avatar {
     width: 320px;
     border-radius: 50%;
-    border: 3px solid rgba(0,255,120,.35);
+    border: 3px solid rgba(129,71,255,.35);
 
     box-shadow:
-        0 0 40px rgba(0,255,120,.25),
-        0 0 100px rgba(0,255,120,.08);
+        0 0 40px rgba(129,71,255,.25),
+        0 0 100px rgba(129,71,255,.08);
 
     position: relative;
     z-index: 2;
@@ -92,7 +92,7 @@ body::before {
 .hero h1 {
     font-size: 5rem;
     font-family: 'JetBrains Mono', monospace;
-    text-shadow: 0 0 20px rgba(0,255,120,.45);
+    text-shadow: 0 0 20px rgba(129,71,255,.45);
 }
 
 .subtitle {
@@ -113,8 +113,8 @@ body::before {
     text-decoration: none;
     color: white;
 
-    background: rgba(0,255,120,.12);
-    border: 1px solid rgba(0,255,120,.25);
+    background: rgba(129,71,255,.12);
+    border: 1px solid rgba(129,71,255,.25);
 
     backdrop-filter: blur(10px);
     transition: .3s;
@@ -122,7 +122,7 @@ body::before {
 
 .btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 0 20px rgba(0,255,120,.22);
+    box-shadow: 0 0 20px rgba(129,71,255,.22);
 }
 
 .ghost {
@@ -162,7 +162,7 @@ body::before {
 
 .card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 0 25px rgba(0,255,120,.15);
+    box-shadow: 0 0 25px rgba(129,71,255,.15);
 }
 
 .card img {
@@ -187,7 +187,7 @@ body::before {
 .card-content a {
     display: inline-block;
     margin-top: 1rem;
-    color: #72ffb2;
+    color: #9572FF;
     text-decoration: none;
 }
 
@@ -208,3 +208,5 @@ footer {
     }
 
 }
+
+
