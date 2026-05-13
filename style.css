@@ -48,12 +48,14 @@ body::before {
 }
 
 .posts {
+    width: min(1200px, 90%);
+    margin: auto;
+
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    width: min(1200px, 90%);
-    margin: auto;
-    padding-bottom: 5rem
+
+    padding-bottom: 5rem;
 }
 
 .card {
