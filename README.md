@@ -18,3 +18,16 @@ env:
 ```
 
 Para datos más confiables, crea un secret de GitHub Actions llamado `HTB_TOKEN` con tu token de HTB.
+
+
+<h3 align="center">🎯 Hack The Box Stats</h3>
+
+<p align="center">
+  <a href="https://app.hackthebox.com/public/users/1132645">
+    <img
+      width="70%"
+      src="https://zlcube.github.io/htb/1132645.svg"
+      alt="Hack The Box Stats - ZLCube"
+    />
+  </a>
+</p>
