@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fake Chat Player</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page-zlcube theme-instagram">
+  <main class="app">
+    <section class="controls">
+      <h1>Fake Chat Player</h1>
+      <p>Generador local para conversaciones de broma en tiempo real, con temas de chat, fondo chroma key y skin ZLCube fija.</p>
+
+      <div class="grid">
+        <label>Tema de chat
+          <select id="themeSelect">
+            <option value="instagram" selected>Instagram</option>
+            <option value="whatsapp">WhatsApp</option>
+            <option value="telegram">Telegram</option>
+            <option value="teams">Microsoft Teams</option>
+            <option value="twitter">X / Twitter DM</option>
+          </select>
+        </label>
+        <label>Estado / subtítulo
+          <input id="statusText" value="Activo ahora" />
+        </label>
+        <label>Nombre source
+          <input id="sourceName" value="Cube" />
+        </label>
+        <label>Nombre destination
+          <input id="destName" value="Colaborador" />
+        </label>
+        <label>Avatar source URL
+          <input id="sourceAvatar" value="assets/avatar.png" />
+        </label>
+        <label>Avatar destination URL
+          <input id="destAvatar" value="assets/avatar.png" />
+        </label>
+        <label>Delay base por mensaje (ms)
+          <input id="baseDelay" type="number" value="900" min="0" />
+        </label>
+        <label>Typing por letra (ms)
+          <input id="typingSpeed" type="number" value="25" min="0" />
+        </label>
+        <label>Mostrar avatars
+          <select id="avatarMode">
+            <option value="dest">Solo destination</option>
+            <option value="both" selected>Source y destination</option>
+            <option value="none">Sin avatars</option>
+          </select>
+        </label>
+        <label>Mostrar nombres en burbujas
+          <select id="nameMode">
+            <option value="none">No</option>
+            <option value="dest">Solo destination</option>
+            <option value="both" selected>Source y destination</option>
+          </select>
+        </label>
+        <label>Fondo de captura
+          <select id="backgroundMode">
+            <option value="normal">Normal</option>
+            <option value="chroma">Chroma key</option>
+          </select>
+        </label>
+        <label>Color chroma key
+          <input id="chromaColor" type="color" value="#00ff00" />
+        </label>
+      </div>
+
+      <label class="full">Mensajes JSON
+<textarea id="scriptInput" spellcheck="false">[
+  { "from": "source", "text": "ya we tira paro", "delay": 700 },
+  { "from": "dest", "text": "nel perro >:v", "delay": 1200 },
+  { "from": "source", "text": "solo di que fuiste muy colaborativo", "delay": 900 },
+  { "from": "dest", "text": "colaborativo para bloquearte maybe", "delay": 1300 },
+  { "from": "source", "text": "perfecto, lo pongo en el video gracias", "delay": 900 }
+]</textarea>
+      </label>
+
+      <div class="buttons">
+        <button id="playBtn">▶ Play</button>
+        <button id="pauseBtn">⏸ Pausa</button>
+        <button id="resetBtn">↺ Reset</button>
+        <button id="clearBtn">Limpiar chat</button>
+        <button id="toggleChromaBtn">Fondo chroma</button>
+      </div>
+
+      <p class="hint">Tip: para insertar en video, activa Chroma key, oculta controles y graba la zona del teléfono. Luego quita el verde en tu editor.</p>
+    </section>
+
+    <section class="stage" id="stage">
+      <button id="toggleControls" class="floating">Ocultar controles</button>
+      <div class="phone" id="phone">
+        <header class="chatHeader">
+          <div class="backIcon">‹</div>
+          <img id="headerAvatar" src="assets/avatar.png" alt="avatar" />
+          <div>
+            <strong id="headerName">el</strong>
+            <span id="headerStatus">Activo ahora</span>
+          </div>
+          <div class="headerIcons" id="headerIcons">⌕ ⋮</div>
+        </header>
+
+        <div class="chatArea" id="chatArea"></div>
+
+        <footer class="chatFooter" id="chatFooter">
+          <span id="footerPlaceholder">Mensaje...</span>
+          <b id="footerIcon">♡</b>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
