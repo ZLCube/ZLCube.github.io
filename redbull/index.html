@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ZLCube Daily Hacking Challenges" />
+  <title>ZLCube | Daily Hacking Challenges</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <div class="page-overlay"></div>
+
+  <header class="site-header">
+    <a class="back-link" href="../" aria-label="Volver a zlcube.com">
+      <span aria-hidden="true">←</span>
+      <span>VOLVER</span>
+    </a>
+
+    <a class="header-title" href="./">ZLCUBE // DAILY CHALLENGES</a>
+
+    <span class="header-status">ONLINE</span>
+  </header>
+
+  <main class="site-main">
+    <section class="hero">
+      <span class="eyebrow">ZLCUBE.COM // DAILY SERIES</span>
+      <h1>DAILY HACKING<br><span>CHALLENGES</span></h1>
+      <p>
+        Un reto nuevo por día. Encuentra la vulnerabilidad, entiende por qué ocurre
+        y consigue que el navegador haga exactamente lo que no debería.
+      </p>
+    </section>
+
+    <section class="challenges-section">
+      <div class="section-heading">
+        <span>CHALLENGES</span>
+        <span id="challengeCount">00</span>
+      </div>
+
+      <div id="challengeGrid" class="challenge-grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>ZLCUBE.COM</span>
+    <span>FOR EDUCATIONAL PURPOSES // 2026</span>
+  </footer>
+
+  <template id="challengeTemplate">
+    <article class="challenge-card">
+      <button class="challenge-summary" type="button" aria-expanded="false">
+        <div class="challenge-day-block">
+          <span class="challenge-day"></span>
+          <span class="challenge-tag"></span>
+        </div>
+
+        <div class="challenge-copy">
+          <h2 class="challenge-title"></h2>
+          <p class="challenge-description"></p>
+        </div>
+
+        <span class="challenge-action">ABRIR <b>→</b></span>
+      </button>
+
+      <div class="challenge-content" hidden>
+        <div class="challenge-inner">
+          <div class="challenge-objective">
+            <span class="mini-label">OBJETIVO</span>
+            <p class="challenge-objective-text"></p>
+          </div>
+
+          <div class="lab">
+            <form class="lab-form" autocomplete="off">
+              <label>
+                <span class="mini-label">INPUT</span>
+                <div class="input-row">
+                  <input
+                    class="lab-input"
+                    type="text"
+                    spellcheck="false"
+                    placeholder="Introduce tu payload..."
+                  />
+                  <button type="submit">EJECUTAR</button>
+                </div>
+              </label>
+            </form>
+
+            <div class="lab-output">
+              <span class="mini-label">OUTPUT</span>
+              <div class="output-content">&gt; esperando input...</div>
+            </div>
+          </div>
+
+          <div class="challenge-hint">
+            <button class="hint-button" type="button">MOSTRAR PISTA</button>
+            <p class="hint-text" hidden></p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script src="./js/challenges.js"></script>
+  <script src="./js/main.js"></script>
+</body>
+</html>
