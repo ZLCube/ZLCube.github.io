@@ -485,3 +485,104 @@ button {
   color: #c3b8d2;
   font-size: 0.8rem;
 }
+
+/* ========================================
+   DAY 02 — SQL INJECTION
+======================================== */
+
+.sql-query {
+  margin-bottom: 18px;
+}
+
+.sql-query pre {
+  margin: 10px 0 0;
+  padding: 16px;
+
+  overflow-x: auto;
+
+  background: rgba(0, 0, 0, 0.35);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+}
+
+.sql-query code {
+  color: #cbb8ef;
+  font-family: "Courier New", monospace;
+  line-height: 1.6;
+}
+
+.sql-analysis {
+  margin-top: 15px;
+  padding: 15px;
+
+  background: rgba(0, 0, 0, 0.25);
+
+  border-left: 3px solid #9f83d7;
+}
+
+.sql-analysis p {
+  display: flex;
+  justify-content: space-between;
+
+  margin: 8px 0;
+
+  color: #c3b8d2;
+
+  font-family: "Courier New", monospace;
+  font-size: 0.75rem;
+}
+
+.sql-analysis strong {
+  color: #b9ffa9;
+}
+
+.access-denied {
+  margin-top: 16px;
+  padding: 15px;
+
+  color: #ff9b9b;
+
+  border: 1px solid rgba(255, 100, 100, 0.25);
+  border-radius: 8px;
+
+  background: rgba(255, 80, 80, 0.05);
+
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+
+  letter-spacing: 0.1em;
+}
+
+
+/* SQL SYNTAX HIGHLIGHTING */
+
+.sql-code {
+  display: block;
+  font-family: "Courier New", monospace;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.sql-keyword {
+  color: #cbb8ef;
+  font-weight: 700;
+}
+
+.sql-string {
+  color: #b9ffa9;
+}
+
+.sql-number {
+  color: #f2c6ff;
+}
+
+.sql-operator {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.sql-comment {
+  color: #8b8296;
+  font-style: italic;
+}
