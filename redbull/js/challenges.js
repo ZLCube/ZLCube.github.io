@@ -1,10 +1,6 @@
 /*
  * Agrega un objeto nuevo por cada día.
  * El HTML se genera dinámicamente.
- *
- * IMPORTANTE:
- * Los retos de este proyecto son deliberadamente client-side.
- * No guardes tokens, cookies, credenciales o secretos reales aquí.
  */
 
 window.ZLCUBE_CHALLENGES = [
@@ -23,14 +19,16 @@ window.ZLCUBE_CHALLENGES = [
   },
   {
     day: 2,
-    tag: "LOCKED",
-    title: "Próximamente",
+    tag: "SQLi",
+    title: "SQL Injection",
     description:
-      "El siguiente reto se desbloqueará con el próximo video de la serie.",
-    objective: "",
-    hint: "",
-    unlocked: false,
-    type: null
+      "Manipula la lógica de una consulta SQL utilizando una entrada controlada por el usuario.",
+    objective:
+      "Consigue que la consulta resulte verdadera sin conocer la contraseña.",
+    hint:
+      "Observa dónde aparecen las comillas de tu entrada dentro del query.",
+    unlocked: true,
+    type: "sqli"
   },
   {
     day: 3,
