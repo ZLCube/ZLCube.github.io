@@ -43,9 +43,179 @@ function runXssLab(value, output, card) {
   });
 }
 
+function buildQuery(username, password) {
+  return `
+SELECT * FROM users
+WHERE username = '${username}'
+AND password = '${password}';
+  `.trim();
+}
+
+
+function analyzeSqlInjection(password) {
+  const normalized = password
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .trim();
+
+  const closesString = password.includes("'");
+
+  const hasBooleanCondition =
+    normalized.includes(" or ") &&
+    (
+      normalized.includes("'1'='1'") ||
+      normalized.includes("1=1")
+    );
+
+  const hasComment =
+    normalized.includes("--") ||
+    normalized.includes("#");
+
+  return {
+    closesString,
+    hasBooleanCondition,
+    hasComment,
+    vulnerable:
+      closesString &&
+      hasBooleanCondition &&
+      hasComment
+  };
+}
+
+function runSqliLab(value, output, card) {
+
+  const username = "admin";
+
+  const query = buildQuery(username, value);
+  const analysis = analyzeSqlInjection(value);
+
+  if (analysis.vulnerable) {
+
+    output.innerHTML = `
+      <div class="sql-query">
+        <span class="mini-label">QUERY GENERATED</span>
+
+        <pre><code class="sql-code">${highlightSql(query)}</code></pre>
+      </div>
+
+      <div class="sql-analysis">
+        <p>
+          STRING ESCAPE
+          <strong>✓</strong>
+        </p>
+
+        <p>
+          BOOLEAN CONDITION
+          <strong>✓</strong>
+        </p>
+
+        <p>
+          SQL COMMENT
+          <strong>✓</strong>
+        </p>
+      </div>
+
+      <div class="challenge-completed">
+        <strong>✓ CHALLENGE COMPLETED</strong>
+        <span>Authentication bypassed.</span>
+      </div>
+    `;
+
+    card.classList.add("is-completed");
+
+    const action = card.querySelector(".challenge-action");
+    action.innerHTML = "COMPLETED ✓";
+
+    const tag = card.querySelector(".challenge-tag");
+    tag.textContent = "PWNED";
+
+  } else {
+
+    output.innerHTML = `
+      <div class="sql-query">
+        <span class="mini-label">QUERY GENERATED</span>
+
+        <pre><code class="sql-code">${highlightSql(query)}</code></pre>
+      </div>
+
+      <div class="sql-analysis">
+
+        <p>
+          STRING ESCAPE
+          <strong>${analysis.closesString ? "✓" : "✗"}</strong>
+        </p>
+
+        <p>
+          BOOLEAN CONDITION
+          <strong>${analysis.hasBooleanCondition ? "✓" : "✗"}</strong>
+        </p>
+
+        <p>
+          SQL COMMENT
+          <strong>${analysis.hasComment ? "✓" : "✗"}</strong>
+        </p>
+
+      </div>
+
+      <div class="access-denied">
+        ACCESS DENIED
+      </div>
+    `;
+  }
+}
+function escapeHtml(value) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function highlightSql(sql) {
+  const escaped = escapeHtml(sql);
+
+  const tokenRegex =
+    /(--.*$)|(&#039;.*?&#039;)|\b(SELECT|FROM|WHERE|AND|OR|INSERT|INTO|UPDATE|DELETE|VALUES|SET|JOIN|ON|AS|ORDER|BY|GROUP|LIMIT|OFFSET|UNION|NULL|IS|NOT)\b|\b(\d+)\b|(!=|=|&gt;=|&lt;=|&gt;|&lt;)/gim;
+
+  return escaped.replace(
+    tokenRegex,
+    (match, comment, string, keyword, number, operator) => {
+
+      if (comment) {
+        return `<span class="sql-comment">${comment}</span>`;
+      }
+
+      if (string) {
+        return `<span class="sql-string">${string}</span>`;
+      }
+
+      if (keyword) {
+        return `<span class="sql-keyword">${keyword}</span>`;
+      }
+
+      if (number) {
+        return `<span class="sql-number">${number}</span>`;
+      }
+
+      if (operator) {
+        return `<span class="sql-operator">${operator}</span>`;
+      }
+
+      return match;
+    }
+  );
+}
+
 function runChallenge(challenge, value, output, card) {
+
   if (challenge.type === "xss") {
     runXssLab(value, output, card);
+    return;
+  }
+
+  if (challenge.type === "sqli") {
+    runSqliLab(value, output, card);
     return;
   }
 
