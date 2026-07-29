@@ -207,6 +207,211 @@ function highlightSql(sql) {
   );
 }
 
+function normalizeUnixPath(path) {
+  const parts = path.split("/");
+  const stack = [];
+
+  for (const part of parts) {
+    if (!part || part === ".") {
+      continue;
+    }
+
+    if (part === "..") {
+      stack.pop();
+      continue;
+    }
+
+    stack.push(part);
+  }
+
+  return "/" + stack.join("/");
+}
+
+
+function runPathTraversalLab(value, output, card) {
+  const basePath = "/var/www/files/";
+
+  /*
+   * Simulamos la concatenación vulnerable:
+   *
+   * /var/www/files/ + USER_INPUT
+   */
+  const rawPath = basePath + value;
+
+  /*
+   * Después simulamos cómo el sistema operativo
+   * resolvería ../
+   */
+  const resolvedPath = normalizeUnixPath(rawPath);
+
+  /*
+   * Filesystem completamente ficticio.
+   * GitHub Pages NO está leyendo estos archivos.
+   */
+  const fakeFilesystem = {
+    "/var/www/files/welcome.txt":
+      "Welcome to ZLCube File Viewer.",
+
+    "/var/www/files/notes.txt":
+      "Remember: never trust user-controlled paths.",
+
+    "/etc/hosts":
+`127.0.0.1 localhost
+127.0.1.1 zlcube-lab`,
+
+    "/etc/passwd":
+`root:x:0:0:root:/root:/bin/bash
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+cube:x:1000:1000:cube:/home/cube:/bin/bash`
+  };
+
+  const containsTraversal = value.includes("../");
+
+  const escapedBaseDirectory =
+    !resolvedPath.startsWith("/var/www/files/");
+
+  const sensitiveFile =
+    resolvedPath === "/etc/passwd";
+
+  const fileExists =
+    Object.prototype.hasOwnProperty.call(
+      fakeFilesystem,
+      resolvedPath
+    );
+
+  const fileContent = fileExists
+    ? fakeFilesystem[resolvedPath]
+    : "404 FILE NOT FOUND";
+
+  output.innerHTML = `
+    <div class="path-section">
+
+      <span class="mini-label">BASE DIRECTORY</span>
+
+      <pre class="path-value">${escapeHtml(basePath)}</pre>
+
+    </div>
+
+
+    <div class="path-section">
+
+      <span class="mini-label">USER INPUT</span>
+
+      <pre class="path-value path-input">${escapeHtml(value)}</pre>
+
+    </div>
+
+
+    <div class="path-section">
+
+      <span class="mini-label">RAW PATH</span>
+
+      <pre class="path-value">${highlightTraversal(
+        rawPath
+      )}</pre>
+
+    </div>
+
+
+    <div class="path-arrow">
+      ↓ PATH NORMALIZATION
+    </div>
+
+
+    <div class="path-section">
+
+      <span class="mini-label">RESOLVED PATH</span>
+
+      <pre class="path-value resolved-path">${escapeHtml(
+        resolvedPath
+      )}</pre>
+
+    </div>
+
+
+    <div class="path-analysis">
+
+      <p>
+        <span>DIRECTORY TRAVERSAL</span>
+        <strong>
+          ${containsTraversal ? "✓" : "✗"}
+        </strong>
+      </p>
+
+      <p>
+        <span>ESCAPED BASE DIRECTORY</span>
+        <strong>
+          ${escapedBaseDirectory ? "✓" : "✗"}
+        </strong>
+      </p>
+
+      <p>
+        <span>SENSITIVE FILE</span>
+        <strong>
+          ${sensitiveFile ? "✓" : "✗"}
+        </strong>
+      </p>
+
+    </div>
+
+
+    <div class="file-response">
+
+      <span class="mini-label">
+        FILE CONTENT
+      </span>
+
+      <pre>${escapeHtml(fileContent)}</pre>
+
+    </div>
+  `;
+
+
+  if (
+    containsTraversal &&
+    escapedBaseDirectory &&
+    sensitiveFile &&
+    fileExists
+  ) {
+
+    output.insertAdjacentHTML(
+      "beforeend",
+      `
+        <div class="challenge-completed">
+          <strong>
+            ✓ CHALLENGE COMPLETED
+          </strong>
+
+          <span>
+            File outside allowed directory accessed.
+          </span>
+        </div>
+      `
+    );
+
+    card.classList.add("is-completed");
+
+    const action =
+      card.querySelector(".challenge-action");
+
+    action.innerHTML = "COMPLETED ✓";
+
+    const tag =
+      card.querySelector(".challenge-tag");
+
+    tag.textContent = "PWNED";
+  }
+}
+
+function highlightTraversal(path) {
+  const escaped = escapeHtml(path);
+
+  return escaped.replace(
+    /\.\.\//g,
+    '<span class="traversal-token">../</span>'
+  );
+}
+
 function runChallenge(challenge, value, output, card) {
 
   if (challenge.type === "xss") {
@@ -219,7 +424,18 @@ function runChallenge(challenge, value, output, card) {
     return;
   }
 
-  output.textContent = "> challenge no implementado";
+  if (challenge.type === "path-traversal") {
+    runPathTraversalLab(
+      value,
+      output,
+      card
+    );
+
+    return;
+  }
+
+  output.textContent =
+    "> challenge no implementado";
 }
 
 function createChallengeCard(challenge) {
