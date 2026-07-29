@@ -1,721 +1,140 @@
-:root {
-  --lavender: #9f83d7;
-  --lavender-light: #cbb8ef;
-  --lavender-deep: #6f51ad;
-  --ink: #0b0910;
-  --panel: rgba(12, 10, 18, 0.86);
-  --panel-soft: rgba(24, 19, 34, 0.72);
-  --text: #f7f4fb;
-  --muted: #c3b8d2;
-  --line: rgba(255, 255, 255, 0.12);
-  --success: #b9ffa9;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
 body {
-  margin: 0;
-  min-height: 100vh;
-  color: var(--text);
-  font-family: Ubuntu, "Segoe UI", Arial, sans-serif;
-  background:
-    linear-gradient(rgba(14, 10, 20, .16), rgba(14, 10, 20, .22)),
-    url("../assets/background.png") center center / cover fixed no-repeat,
-    var(--lavender);
+    background: #07040d;
+    color: white;
+    font-family: sans-serif;
+    margin: 0
 }
 
-button,
-input {
-  font: inherit;
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.88)),
+        url('assets/bg.png');
+
+    background-size: cover;
+    background-position: center;
+    z-index: -3;
 }
 
-button {
-  color: inherit;
-}
 
-.page-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background:
-    linear-gradient(90deg, rgba(10, 8, 15, .48) 0%, rgba(10, 8, 15, .18) 45%, rgba(10, 8, 15, .25) 100%),
-    linear-gradient(180deg, rgba(7, 5, 12, .12), rgba(7, 5, 12, .38));
-  pointer-events: none;
-}
-
-.site-header,
-.site-main,
-.site-footer {
-  width: min(1120px, calc(100% - 32px));
-  margin-inline: auto;
-}
-
-.site-header {
-  min-height: 72px;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, .18);
-  font-size: .72rem;
-  font-weight: 700;
-  letter-spacing: .12em;
-}
-
-.site-header a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.back-link {
-  width: max-content;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  opacity: .9;
-}
-
-.back-link:hover {
-  opacity: 1;
-}
-
-.header-title {
-  text-align: center;
-}
-
-.header-status {
-  justify-self: end;
-  color: var(--success);
-}
-
-.site-main {
-  padding: 110px 0 90px;
+.matrix {
+    position: fixed;
+    inset: 0;
+    background-image: linear-gradient(rgba(125, 39, 245, .05) 1px, transparent 1px), linear-gradient(90deg, rgba(125, 39, 245, .05) 1px, transparent 1px);
+    background-size: 45px 45px;
+    z-index: -1
 }
 
 .hero {
-  width: min(760px, 100%);
-  margin-bottom: 90px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column
 }
 
-.eyebrow,
-.section-heading,
-.mini-label {
-  font-family: "Courier New", monospace;
-  font-size: .68rem;
-  font-weight: 700;
-  letter-spacing: .16em;
-}
+.avatar {
+    width: 250px;
+    border-radius: 50%;
+    border: 2px solid hsl(256, 85%, 63%);
 
-.eyebrow {
-  color: var(--lavender-light);
+    box-shadow:
+        0 0 12px rgba(150, 112, 255, 0.712),
+        0 0 35px rgba(150, 112, 255, 0.568);
 }
 
 .hero h1 {
-  margin: 14px 0 18px;
-  font-size: clamp(3rem, 8vw, 6.4rem);
-  line-height: .88;
-  letter-spacing: -.055em;
-  font-weight: 900;
+
+    text-shadow:
+        0 0 10px rgba(125,39,245,.18),
+        0 0 30px rgba(125,39,245,.08);
+
 }
 
-.hero h1 span {
-  color: var(--lavender-light);
+.posts {
+    width: min(1200px, 90%);
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+
+    padding-bottom: 5rem;
 }
 
-.hero p {
-  max-width: 670px;
-  margin: 0;
-  color: #eee8f4;
-  font-size: 1rem;
-  line-height: 1.8;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, .45);
+.card {
+    background: rgba(0, 0, 0, 0.267);
+
+    border:
+        1px solid rgba(75, 50, 165, 0.616);
+
+    border-radius: 24px;
+
+    padding: 2rem;
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    box-shadow:
+        0 0 10px rgba(84, 39, 245, 0.247),
+        0 0 30px rgba(84, 39, 245, 0.247);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
 }
 
-.section-heading {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 14px;
-  border-bottom: 1px solid rgba(255, 255, 255, .18);
-  color: #ede7f5;
+.card:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 0 16px rgba(150, 112, 255, 0.712),
+        0 0 45px rgba(150, 112, 255, 0.712);
 }
 
-.challenge-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
-  margin-top: 18px;
+a {
+    color: hsl(256, 85%, 63%);
+    text-decoration: none
 }
 
-.challenge-card {
-  overflow: hidden;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  box-shadow: 0 22px 70px rgba(0, 0, 0, .22);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition:
-    transform .2s ease,
-    border-color .2s ease,
-    background .2s ease;
+.post-container {
+    width: min(900px, 90%);
+    margin: auto;
+    padding: 6rem 0
 }
 
-.challenge-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(203, 184, 239, .32);
-}
+.buttons {
 
-.challenge-card.is-open {
-  background: rgba(11, 9, 16, .93);
-  border-color: rgba(203, 184, 239, .28);
-}
-
-.challenge-card.is-locked {
-  opacity: .6;
-}
-
-.challenge-summary {
-  width: 100%;
-  min-height: 145px;
-  padding: 25px 28px;
-  display: grid;
-  grid-template-columns: 115px 1fr auto;
-  gap: 28px;
-  align-items: center;
-  text-align: left;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-}
-
-.challenge-day-block {
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 8px;
-  border-right: 1px solid var(--line);
-}
-
-.challenge-day {
-  font-size: .72rem;
-  font-weight: 800;
-  letter-spacing: .12em;
-  color: var(--lavender-light);
-}
-
-.challenge-tag {
-  width: max-content;
-  padding: 6px 8px;
-  color: #17101f;
-  background: var(--lavender-light);
-  border-radius: 6px;
-  font-family: "Courier New", monospace;
-  font-size: .65rem;
-  font-weight: 900;
-  letter-spacing: .08em;
-}
-
-.challenge-copy h2 {
-  margin: 0 0 9px;
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
-}
-
-.challenge-copy p {
-  margin: 0;
-  max-width: 670px;
-  color: var(--muted);
-  line-height: 1.6;
-  font-size: .88rem;
-}
-
-.challenge-action {
-  min-width: 88px;
-  color: #ddd2eb;
-  font-size: .68rem;
-  font-weight: 800;
-  letter-spacing: .11em;
-}
-
-.challenge-action b {
-  margin-left: 7px;
-  color: var(--lavender-light);
-  font-size: 1rem;
-}
-
-.challenge-content {
-  border-top: 1px solid var(--line);
-}
-
-.challenge-inner {
-  padding: 28px;
-}
-
-.challenge-objective {
-  margin-bottom: 26px;
-}
-
-.challenge-objective p {
-  margin: 9px 0 0;
-  color: #ded6e8;
-  line-height: 1.65;
-}
-
-.mini-label {
-  color: var(--lavender-light);
-}
-
-.lab {
-  padding: 22px;
-  background: rgba(2, 2, 4, .46);
-  border: 1px solid rgba(255, 255, 255, .09);
-  border-radius: 12px;
-}
-
-.lab-form label {
-  display: block;
-}
-
-.input-row {
-  margin-top: 10px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-}
-
-.lab-input {
-  min-width: 0;
-  padding: 15px 16px;
-  color: #fff;
-  background: rgba(0, 0, 0, .4);
-  border: 1px solid #423753;
-  border-right: 0;
-  border-radius: 8px 0 0 8px;
-  outline: none;
-  font-family: "Courier New", monospace;
-}
-
-.lab-input:focus {
-  border-color: var(--lavender-light);
-}
-
-.lab-form button {
-  padding: 0 20px;
-  border: 0;
-  border-radius: 0 8px 8px 0;
-  color: #17101f;
-  background: var(--lavender-light);
-  font-size: .68rem;
-  font-weight: 900;
-  letter-spacing: .08em;
-  cursor: pointer;
-}
-
-.lab-output {
-  margin-top: 20px;
-}
-
-.output-content {
-  min-height: 62px;
-  margin-top: 10px;
-  padding: 14px;
-  overflow-wrap: anywhere;
-  color: #e8e1ef;
-  background: #09070d;
-  border-left: 3px solid var(--lavender-deep);
-  font-family: "Courier New", monospace;
-  line-height: 1.6;
-}
-
-.challenge-hint {
-  margin-top: 18px;
-}
-
-.hint-button {
-  padding: 0;
-  color: #cfc2de;
-  background: transparent;
-  border: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, .25);
-  font-size: .68rem;
-  font-weight: 800;
-  letter-spacing: .1em;
-  cursor: pointer;
-}
-
-.hint-text {
-  max-width: 700px;
-  margin: 12px 0 0;
-  color: var(--muted);
-  line-height: 1.6;
-  font-size: .82rem;
-}
-
-.site-footer {
-  min-height: 84px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  border-top: 1px solid rgba(255,255,255,.14);
-  color: rgba(255, 255, 255, .62);
-  font-size: .62rem;
-  letter-spacing: .12em;
-}
-
-@media (max-width: 760px) {
-  body {
-    background-attachment: scroll;
-    background-position: center top;
-  }
-
-  .site-header {
-    grid-template-columns: 1fr auto;
-  }
-
-  .header-title {
-    display: none;
-  }
-
-  .challenge-summary {
-    grid-template-columns: 78px 1fr;
-    gap: 18px;
-    padding: 22px 18px;
-  }
-
-  .challenge-action {
-    grid-column: 2;
-  }
-
-  .challenge-day-block {
-    grid-row: 1 / span 2;
-  }
-
-  .site-main {
-    padding-top: 78px;
-  }
-
-  .hero {
-    margin-bottom: 65px;
-  }
-
-  .input-row {
-    grid-template-columns: 1fr;
-  }
-
-  .lab-input {
-    border-right: 1px solid #423753;
-    border-radius: 8px 8px 0 0;
-  }
-
-  .lab-form button {
-    min-height: 48px;
-    border-radius: 0 0 8px 8px;
-  }
-
-  .site-footer {
-    flex-direction: column;
+    display: flex;
     justify-content: center;
-    text-align: center;
-  }
+    gap: 2rem;
+    margin-top: 1rem;
+
 }
 
-@media (max-width: 480px) {
-  .hero h1 {
-    font-size: clamp(2.8rem, 17vw, 4.5rem);
-  }
+.btn {
+    padding: .8rem 1.3rem;
 
-  .challenge-summary {
-    grid-template-columns: 1fr;
-  }
+    border:
+        1px solid hsl(256, 85%, 63%);
 
-  .challenge-day-block {
-    grid-row: auto;
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-    padding-bottom: 16px;
-  }
+    border-radius: 12px;
 
-  .challenge-action {
-    grid-column: auto;
-  }
+    box-shadow:
+        0 0 8px rgba(150, 112, 255, 0.911);
 
-  .challenge-inner {
-    padding: 20px 16px;
-  }
+    transition:
+        .25s ease;
 }
 
-.challenge-card.is-completed {
-  border-color: rgba(185, 255, 169, 0.45);
-}
+.btn:hover {
 
-.challenge-card.is-completed .challenge-tag {
-  background: #b9ffa9;
-  color: #111;
-}
+    transform:
+        translateY(-3px)
+        scale(1.03);
 
-.challenge-card.is-completed .challenge-action {
-  color: #b9ffa9;
-}
-
-.challenge-completed {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-
-  padding: 18px;
-
-  border: 1px solid rgba(185, 255, 169, 0.35);
-  border-radius: 8px;
-
-  background: rgba(185, 255, 169, 0.06);
-}
-
-.challenge-completed strong {
-  color: #b9ffa9;
-  letter-spacing: 0.1em;
-}
-
-.challenge-completed span {
-  color: #c3b8d2;
-  font-size: 0.8rem;
-}
-
-/* ========================================
-   DAY 02 — SQL INJECTION
-======================================== */
-
-.sql-query {
-  margin-bottom: 18px;
-}
-
-.sql-query pre {
-  margin: 10px 0 0;
-  padding: 16px;
-
-  overflow-x: auto;
-
-  background: rgba(0, 0, 0, 0.35);
-
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
-}
-
-.sql-query code {
-  color: #cbb8ef;
-  font-family: "Courier New", monospace;
-  line-height: 1.6;
-}
-
-.sql-analysis {
-  margin-top: 15px;
-  padding: 15px;
-
-  background: rgba(0, 0, 0, 0.25);
-
-  border-left: 3px solid #9f83d7;
-}
-
-.sql-analysis p {
-  display: flex;
-  justify-content: space-between;
-
-  margin: 8px 0;
-
-  color: #c3b8d2;
-
-  font-family: "Courier New", monospace;
-  font-size: 0.75rem;
-}
-
-.sql-analysis strong {
-  color: #b9ffa9;
-}
-
-.access-denied {
-  margin-top: 16px;
-  padding: 15px;
-
-  color: #ff9b9b;
-
-  border: 1px solid rgba(255, 100, 100, 0.25);
-  border-radius: 8px;
-
-  background: rgba(255, 80, 80, 0.05);
-
-  font-family: "Courier New", monospace;
-  font-weight: bold;
-
-  letter-spacing: 0.1em;
-}
-
-
-/* SQL SYNTAX HIGHLIGHTING */
-
-.sql-code {
-  display: block;
-  font-family: "Courier New", monospace;
-  line-height: 1.7;
-  white-space: pre-wrap;
-}
-
-.sql-keyword {
-  color: #cbb8ef;
-  font-weight: 700;
-}
-
-.sql-string {
-  color: #b9ffa9;
-}
-
-.sql-number {
-  color: #f2c6ff;
-}
-
-.sql-operator {
-  color: #ffffff;
-  font-weight: 700;
-}
-
-.sql-comment {
-  color: #8b8296;
-  font-style: italic;
-}
-
-/* ========================================
-   DAY 03 — PATH TRAVERSAL
-======================================== */
-
-.path-section {
-  margin-bottom: 18px;
-}
-
-.path-value {
-  margin: 8px 0 0;
-  padding: 14px 16px;
-
-  background: rgba(0, 0, 0, 0.32);
-
-  border: 1px solid
-    rgba(255, 255, 255, 0.08);
-
-  border-radius: 8px;
-
-  color: #e7dff0;
-
-  font-family:
-    "Courier New",
-    monospace;
-
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
-
-.path-input {
-  color: #cbb8ef;
-}
-
-.resolved-path {
-  color: #b9ffa9;
-}
-
-.traversal-token {
-  color: #ff9ccf;
-  font-weight: 700;
-
-  background:
-    rgba(255, 156, 207, 0.08);
-
-  padding: 2px 3px;
-
-  border-radius: 3px;
-}
-
-.path-arrow {
-  margin: 16px 0;
-
-  color: #8f83a1;
-
-  font-family:
-    "Courier New",
-    monospace;
-
-  font-size: 0.7rem;
-
-  letter-spacing: 0.08em;
-}
-
-.path-analysis {
-  margin: 22px 0;
-
-  padding: 15px;
-
-  background:
-    rgba(0, 0, 0, 0.25);
-
-  border-left:
-    3px solid #9f83d7;
-}
-
-.path-analysis p {
-  margin: 8px 0;
-
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-
-  color: #c3b8d2;
-
-  font-family:
-    "Courier New",
-    monospace;
-
-  font-size: 0.75rem;
-}
-
-.path-analysis strong {
-  color: #b9ffa9;
-}
-
-.file-response {
-  margin-top: 20px;
-}
-
-.file-response pre {
-  margin: 10px 0 0;
-
-  padding: 18px;
-
-  min-height: 65px;
-
-  overflow-x: auto;
-
-  background: #09070d;
-
-  border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.08
-    );
-
-  border-radius: 8px;
-
-  color: #d9d0e4;
-
-  font-family:
-    "Courier New",
-    monospace;
-
-  font-size: 0.8rem;
-
-  line-height: 1.65;
-
-  white-space: pre-wrap;
 }
