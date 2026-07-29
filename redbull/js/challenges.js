@@ -32,6 +32,19 @@ window.ZLCUBE_CHALLENGES = [
   },
   {
     day: 3,
+    tag: "TRAVERSAL",
+    title: "Path Traversal",
+    description:
+     "La aplicación permite leer archivos dentro de un directorio permitido. ¿Puedes escapar de él?",
+    objective:
+      "Consigue leer /etc/passwd utilizando una ruta controlada por el usuario.",
+    hint:
+      "En sistemas Unix, .. representa el directorio padre.",
+    unlocked: true,
+    type: "path-traversal"
+  },
+  {
+    day: 4,
     tag: "LOCKED",
     title: "Próximamente",
     description:
