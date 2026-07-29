@@ -586,3 +586,136 @@ button {
   color: #8b8296;
   font-style: italic;
 }
+
+/* ========================================
+   DAY 03 — PATH TRAVERSAL
+======================================== */
+
+.path-section {
+  margin-bottom: 18px;
+}
+
+.path-value {
+  margin: 8px 0 0;
+  padding: 14px 16px;
+
+  background: rgba(0, 0, 0, 0.32);
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 8px;
+
+  color: #e7dff0;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.path-input {
+  color: #cbb8ef;
+}
+
+.resolved-path {
+  color: #b9ffa9;
+}
+
+.traversal-token {
+  color: #ff9ccf;
+  font-weight: 700;
+
+  background:
+    rgba(255, 156, 207, 0.08);
+
+  padding: 2px 3px;
+
+  border-radius: 3px;
+}
+
+.path-arrow {
+  margin: 16px 0;
+
+  color: #8f83a1;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 0.7rem;
+
+  letter-spacing: 0.08em;
+}
+
+.path-analysis {
+  margin: 22px 0;
+
+  padding: 15px;
+
+  background:
+    rgba(0, 0, 0, 0.25);
+
+  border-left:
+    3px solid #9f83d7;
+}
+
+.path-analysis p {
+  margin: 8px 0;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+
+  color: #c3b8d2;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 0.75rem;
+}
+
+.path-analysis strong {
+  color: #b9ffa9;
+}
+
+.file-response {
+  margin-top: 20px;
+}
+
+.file-response pre {
+  margin: 10px 0 0;
+
+  padding: 18px;
+
+  min-height: 65px;
+
+  overflow-x: auto;
+
+  background: #09070d;
+
+  border:
+    1px solid rgba(
+      255,
+      255,
+      255,
+      0.08
+    );
+
+  border-radius: 8px;
+
+  color: #d9d0e4;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 0.8rem;
+
+  line-height: 1.65;
+
+  white-space: pre-wrap;
+}
